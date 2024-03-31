@@ -1,0 +1,44 @@
+En éxécutant
+ls -AR |grep flag
+j'ai vu qu'il n'y avait que 2 fichiers avec flag00 comme group et user
+les 2 fichiers s'appellent john
+grace a find . -name john j'ai trouver les deux chemins
+./usr/sbin/john
+./rofs/usr/sbin/john
+les deux fichiers sont identique et contiennt une string : cdiiddwpgswtgt
+ce mot de passe ne fonctionne pas
+dans google le 1er liens fait référence a un "Code César" : https://www.dcode.fr/chiffre-cesar
+quand ont rentre cette chaine on obtient ces resultats et le premier semble etre le seul a avoir du sens
+
+🠞15 (🠜11)	nottoohardhere
+🠞14 (🠜12)	opuuppibseifsf
+🠞2 (🠜24)	abggbbunequrer
+🠞11 (🠜15)	rsxxsslevhlivi
+🠞21 (🠜5)	hinniibulxbyly
+🠞8 (🠜18)	uvaavvohykolyl
+🠞4 (🠜22)	yzeezzslcospcp
+🠞18 (🠜8)	klqqllexoaebob
+🠞3 (🠜23)	zaffaatmdptqdq
+🠞1 (🠜25)	bchhccvofrvsfs
+🠞5 (🠜21)	xyddyyrkbnrobo
+🠞25 (🠜1)	dejjeexqhtxuhu
+🠞24 (🠜2)	efkkffyriuyviv
+🠞22 (🠜4)	ghmmhhatkwaxkx
+🠞17 (🠜9)	lmrrmmfypbfcpc
+🠞12 (🠜14)	qrwwrrkdugkhuh
+🠞9 (🠜17)	tuzzuungxjnkxk
+🠞16 (🠜10)	mnssnngzqcgdqd
+🠞19 (🠜7)	jkppkkdwnzdana
+🠞20 (🠜6)	ijoojjcvmyczmz
+🠞10 (🠜16)	styyttmfwimjwj
+🠞6 (🠜20)	wxccxxqjamqnan
+🠞7 (🠜19)	vwbbwwpizlpmzm
+🠞13 (🠜13)	pqvvqqjctfjgtg
+🠞23 (🠜3)	fgllggzsjvzwjw
+
+level00@SnowCrash:/$ su flag00
+Password: 
+Don't forget to launch getflag !
+flag00@SnowCrash:~$ getflag
+Check flag.Here is your token : x24ti5gi3x0ol2eh4esiuxias
+

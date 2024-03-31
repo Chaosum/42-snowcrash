@@ -1,0 +1,26 @@
+on arrive encore devant un exécutable et un token
+
+quand on cat token on vois une string ilisible qui a l'air d'avoir la taille d'un flag
+
+quand on ecrit n'importe quoi dans l'argument ca nous renvois ce texte mais encrypter
+
+level09 renvois autant de caractère que la longueur de son argument
+
+chaque lettre est décalée par sa position dans la string
+
+aaaaaaaa va donner abcdefgh
+
+on peu VIM token et on vois que c'est illisible
+
+pour traiter ces valeurs on va récupéré token sur notre machine et le faire passer dans un programe qui va 
+soustraire l'index de chaque lettre a sa valeur ascii
+
+pour ca on a fait un script c
+
+f4kmm6p|=�p�n��DB�Du{�� devient alors f3iji1ju5yuevaus41q1afiuq
+
+level09@SnowCrash:~$ su flag09
+Password: f3iji1ju5yuevaus41q1afiuq
+Don't forget to launch getflag !
+flag09@SnowCrash:~$ getflag
+Check flag.Here is your token : s5cAJpM8ev6XHw998pRWG728z

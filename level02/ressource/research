@@ -1,0 +1,33 @@
+on voit un fichier level02.pcap 
+pcap (« packet capture ») est une interface de programmation permettant de capturer un trafic réseau
+en faisant un cat de ce fichier on voit qu'il y a des tentative de connexion donc potentiellement le mot de passe qu'on cherche dedans 
+"Login incorrect
+wwwbugs login: df&N�%
+                     B'̊$E4�@@J;���;��ߙO/Y�����L�sܽ"
+
+en cherchant sur internet on trouve le nom de l'application wireshark pour lire ce type de fichier
+https://www.it-connect.fr/reconstruction-dun-fichier-depuis-un-enregistrement-pcap/
+
+on récupere le fichier avec "scp level02@127.0.0.1:/home/user/level02"
+
+puis dans wireshark, dans "Analyser/Suivre/TCP stream" on obtient
+
+```..%..%..&..... ..#..'..$..&..... ..#..'..$.. .....#.....'........... .38400,38400....#.SodaCan:0....'..DISPLAY.SodaCan:0......xterm.........."........!........"..".....b........b....	B.
+..............................1.......!.."......"......!..........."........"..".............	..
+.....................
+Linux 2.6.38-8-generic-pae (::ffff:10.1.1.2) (pts/10)
+
+..wwwbugs login: l.le.ev.ve.el.lX.X
+..
+Password: ft_wandr...NDRel.L0L
+.
+..
+Login incorrect
+wwwbugs login: ```
+
+ft_wandr...NDRel.L0L ne fonctionne pas tel quel, en enlevant les . non plus (ft_wandrNDRelL0L)
+
+j'ai compris en regardant login qu'on vois une liste d'input et que . etait le caractère delete le login est levelX 
+le mot de passe est donc ft_waNDReL0L
+
+

