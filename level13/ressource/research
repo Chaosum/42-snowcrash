@@ -1,0 +1,6 @@
+On voit dans le homedir un fichier executable, on le donne a dogbolt, 
+et on voit une chaine de characteres qui ressemble a un flag. Si on
+essaie de se co avec, ca ne marche pas. On voit dans le fichier decompile
+que cette chaiine passe dans une fonction qui a l'air de le dechiffrer. 
+On copie cette fonction dans un fichier C, on execute avec la string, et on obtient
+le flag. On se comprend que ce fichier executable est en fait getflag. 

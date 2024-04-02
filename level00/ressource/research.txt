@@ -1,4 +1,4 @@
-En éxécutant
+En éxécutant:
 ls -AR |grep flag
 j'ai vu qu'il n'y avait que 2 fichiers avec flag00 comme group et user
 les 2 fichiers s'appellent john
@@ -10,7 +10,7 @@ ce mot de passe ne fonctionne pas
 dans google le 1er liens fait référence a un "Code César" : https://www.dcode.fr/chiffre-cesar
 quand ont rentre cette chaine on obtient ces resultats et le premier semble etre le seul a avoir du sens
 
-🠞15 (🠜11)	nottoohardhere
+🠞15 (🠜11)	nottoohardhere <--
 🠞14 (🠜12)	opuuppibseifsf
 🠞2 (🠜24)	abggbbunequrer
 🠞11 (🠜15)	rsxxsslevhlivi

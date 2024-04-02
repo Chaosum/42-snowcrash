@@ -1,0 +1,10 @@
+On voit deux fichiers, quand on lance level10 avec token en parametre. 
+On fait appelle au programme strings qui nous montre les appels de fonction
+dans l'ordre ou elle apparaissent dans le fichier. On voit qu'il y a un access()
+avant un open(), ce qui cree une faiulle TOCTOU. Pour l'exploiter, il faut
+remplacer le fichier sur le lequel on a les droits par token entre les deux appels.
+Pour ca, on cree une race condition. On lance dans trois terminaux ces commandes,
+jusqu'a avoir la reponse. 
+while true; do ln -sf token mylink; rm mylink; ln -sf mytoken mylink; rm mylink; done
+while true; do ./level10 mylink 0.0.0.0; done
+while true; do nc -l 6969; done
